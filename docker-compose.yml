@@ -1,0 +1,174 @@
+name: aegis
+
+services:
+  meilisearch:
+    image: getmeili/meilisearch:v1.12.0
+    container_name: aegis-meilisearch
+    restart: unless-stopped
+    environment:
+      MEILI_ENV: development
+      MEILI_MASTER_KEY: ${MEILI_MASTER_KEY:-dev-master-key-change-me}
+      # No telemetry, no analytics: the index stays local.
+      MEILI_NO_ANALYTICS: "true"
+    ports:
+      - "127.0.0.1:7700:7700"
+    volumes:
+      - meili_data:/meili_data
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:7700/health"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+      start_period: 5s
+
+  tor:
+    build:
+      context: ./tor
+    container_name: aegis-tor
+    restart: unless-stopped
+    # No published ports: the SOCKS5 proxy is reachable from the Compose
+    # network, not from the LAN.
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c 'exec 3<>/dev/tcp/127.0.0.1/9050'"]
+      interval: 20s
+      timeout: 3s
+      retries: 5
+      start_period: 15s
+
+  backend:
+    build:
+      context: ./backend
+    container_name: aegis-backend
+    restart: unless-stopped
+    depends_on:
+      - meilisearch
+      - tor
+    # The image already runs as uid 10001. The root filesystem is read-only:
+    # the only writable paths are the /data volume (crawl files) and /tmp, and
+    # the process cannot gain privileges or new capabilities.
+    read_only: true
+    tmpfs:
+      # Katana and the HTTP clients may need scratch space; nothing survives a
+      # restart and the size is bounded.
+      - /tmp:rw,noexec,nosuid,size=64m,mode=1777
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    # Kept for people who disable the bundled Tor service and point
+    # TOR_PROXY_URL_DOCKER to a Tor daemon on the host (Docker Desktop only).
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      # The root filesystem is read-only: any tool that wants a writable home
+      # (Katana, for example) uses the /tmp tmpfs instead of /home/aegis.
+      HOME: /tmp
+      MEILI_URL: http://meilisearch:7700
+      MEILI_MASTER_KEY: ${MEILI_MASTER_KEY:-dev-master-key-change-me}
+      MEILI_INDEX: pages
+      BRAVE_API_KEY: ${BRAVE_API_KEY:-}
+      BRAVE_COUNTRY: "${BRAVE_COUNTRY:-}"
+      BRAVE_SEARCH_LANG: "${BRAVE_SEARCH_LANG:-}"
+      BRAVE_UI_LANG: "${BRAVE_UI_LANG:-}"
+      BRAVE_EXTRA_SNIPPETS: "${BRAVE_EXTRA_SNIPPETS:-true}"
+      SEARCH_FALLBACK_ORDER: "${SEARCH_FALLBACK_ORDER:-exa,serper,tavily}"
+      SEARCH_MODE: "${SEARCH_MODE:-fallback}"
+      SEARCH_MAX_PROVIDERS: "${SEARCH_MAX_PROVIDERS:-4}"
+      PROVIDER_CACHE_TTL_S: "${PROVIDER_CACHE_TTL_S:-180}"
+      PROVIDER_CACHE_MAX_ENTRIES: "${PROVIDER_CACHE_MAX_ENTRIES:-256}"
+      PROVIDER_FAILURE_THRESHOLD: "${PROVIDER_FAILURE_THRESHOLD:-3}"
+      PROVIDER_COOLDOWN_S: "${PROVIDER_COOLDOWN_S:-60}"
+      EXA_API_KEY: ${EXA_API_KEY:-}
+      EXA_SEARCH_TYPE: "${EXA_SEARCH_TYPE:-auto}"
+      EXA_MODERATION: "${EXA_MODERATION:-true}"
+      EXA_INCLUDE_SUMMARY: "${EXA_INCLUDE_SUMMARY:-false}"
+      SERPER_API_KEY: ${SERPER_API_KEY:-}
+      SERPER_GL: "${SERPER_GL:-}"
+      SERPER_HL: "${SERPER_HL:-}"
+      TAVILY_API_KEY: ${TAVILY_API_KEY:-}
+      TAVILY_SEARCH_DEPTH: "${TAVILY_SEARCH_DEPTH:-basic}"
+      TAVILY_LANGUAGE: "${TAVILY_LANGUAGE:-}"
+      TAVILY_SAFE_SEARCH: "${TAVILY_SAFE_SEARCH:-true}"
+      TAVILY_INCLUDE_ANSWER: "${TAVILY_INCLUDE_ANSWER:-false}"
+      TAVILY_INCLUDE_RAW_CONTENT: "${TAVILY_INCLUDE_RAW_CONTENT:-false}"
+      EXTERNAL_BUDGET_S: "${EXTERNAL_BUDGET_S:-8}"
+      PROXY_ENABLED: "${PROXY_ENABLED:-true}"
+      PROXY_LIST_URL: "${PROXY_LIST_URL:-https://raw.githubusercontent.com/monosans/proxy-list/main/proxies/socks5.txt}"
+      PROXY_LIST_EXTRA: "${PROXY_LIST_EXTRA:-}"
+      PROXY_REFRESH_INTERVAL_S: "${PROXY_REFRESH_INTERVAL_S:-900}"
+      PROXY_RETRY_INTERVAL_S: "${PROXY_RETRY_INTERVAL_S:-60}"
+      PROXY_FETCH_TIMEOUT_S: "${PROXY_FETCH_TIMEOUT_S:-10}"
+      PROXY_STARTUP_TIMEOUT_S: "${PROXY_STARTUP_TIMEOUT_S:-8}"
+      PROXY_POOL_SIZE: "${PROXY_POOL_SIZE:-50}"
+      PROXY_VALIDATE_ON_LOAD: "${PROXY_VALIDATE_ON_LOAD:-true}"
+      PROXY_VALIDATION_TIMEOUT_S: "${PROXY_VALIDATION_TIMEOUT_S:-2.5}"
+      PROXY_VALIDATION_CONCURRENCY: "${PROXY_VALIDATION_CONCURRENCY:-20}"
+      PROXY_VALIDATE_URL: "${PROXY_VALIDATE_URL:-}"
+      PROXY_MAX_ATTEMPTS: "${PROXY_MAX_ATTEMPTS:-3}"
+      PROXY_CONNECT_TIMEOUT_S: "${PROXY_CONNECT_TIMEOUT_S:-2}"
+      PROXY_COOLDOWN_S: "${PROXY_COOLDOWN_S:-120}"
+      PROXY_MAX_COOLDOWN_S: "${PROXY_MAX_COOLDOWN_S:-900}"
+      PROXY_MAX_CLIENTS: "${PROXY_MAX_CLIENTS:-64}"
+      PROXY_FALLBACK_DIRECT: "${PROXY_FALLBACK_DIRECT:-true}"
+      PROXY_WARNING_INTERVAL_S: "${PROXY_WARNING_INTERVAL_S:-60}"
+      CRAWL_ENABLED: "${CRAWL_ENABLED:-true}"
+      KATANA_BINARY: "${KATANA_BINARY:-katana}"
+      CRAWL_OUTPUT_DIR: "${CRAWL_OUTPUT_DIR:-/data}"
+      CRAWL_OUTPUT_PREFIX: "${CRAWL_OUTPUT_PREFIX:-dynamic_crawl}"
+      CRAWL_KEEP_OUTPUTS: "${CRAWL_KEEP_OUTPUTS:-false}"
+      CRAWL_DEPTH: "${CRAWL_DEPTH:-1}"
+      CRAWL_RATE_LIMIT: "${CRAWL_RATE_LIMIT:-20}"
+      CRAWL_REQUEST_TIMEOUT_S: "${CRAWL_REQUEST_TIMEOUT_S:-10}"
+      CRAWL_TIMEOUT_S: "${CRAWL_TIMEOUT_S:-90}"
+      CRAWL_DNS_TIMEOUT_S: "${CRAWL_DNS_TIMEOUT_S:-3}"
+      CRAWL_INGEST_TIMEOUT_S: "${CRAWL_INGEST_TIMEOUT_S:-60}"
+      CRAWL_MAX_CONCURRENCY: "${CRAWL_MAX_CONCURRENCY:-2}"
+      CRAWL_DOMAIN_COOLDOWN_S: "${CRAWL_DOMAIN_COOLDOWN_S:-900}"
+      CRAWL_FAILURE_COOLDOWN_S: "${CRAWL_FAILURE_COOLDOWN_S:-1800}"
+      CRAWL_INGEST_BATCH_SIZE: "${CRAWL_INGEST_BATCH_SIZE:-200}"
+      DEDUPE_ENABLED: "${DEDUPE_ENABLED:-true}"
+      DEDUPE_THRESHOLD: "${DEDUPE_THRESHOLD:-0.9}"
+      DEDUPE_PREFIX_CHARS: "${DEDUPE_PREFIX_CHARS:-2000}"
+      CRAWL_MAX_STARTS_PER_MINUTE: "${CRAWL_MAX_STARTS_PER_MINUTE:-6}"
+      CRAWL_START_BURST: "${CRAWL_START_BURST:-2}"
+      TOR_ENABLED: "${TOR_ENABLED:-true}"
+      # The bundled "tor" service is the default. Use TOR_PROXY_URL_DOCKER
+      # only to point the container somewhere else (for example a Tor daemon
+      # on the host). TOR_PROXY_URL keeps configuring a backend run outside
+      # Docker via backend/.env.
+      TOR_PROXY_URL: "${TOR_PROXY_URL_DOCKER:-socks5://tor:9050}"
+      TOR_STATUS_URL: "${TOR_STATUS_URL:-https://check.torproject.org/api/ip}"
+      TOR_TIMEOUT_S: "${TOR_TIMEOUT_S:-5}"
+      TOR_CACHE_TTL_S: "${TOR_CACHE_TTL_S:-30}"
+      RATE_LIMIT_ENABLED: "${RATE_LIMIT_ENABLED:-true}"
+      RATE_LIMIT_REQUESTS_PER_MINUTE: "${RATE_LIMIT_REQUESTS_PER_MINUTE:-120}"
+      RATE_LIMIT_BURST: "${RATE_LIMIT_BURST:-30}"
+      RATE_LIMIT_MAX_CLIENTS: "${RATE_LIMIT_MAX_CLIENTS:-4096}"
+      CORS_ORIGINS: "${CORS_ORIGINS:-http://localhost:3000,http://127.0.0.1:3000}"
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      # Crawl files live in ./data on the host. The mount is read-write
+      # because the backend writes the on-demand crawls there before indexing
+      # them. On Linux, make the host directory writable by uid 10001 (the
+      # container user): sudo chown -R 10001:10001 data
+      - ./data:/data
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/v1/health', timeout=3)",
+        ]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+volumes:
+  meili_data:

@@ -1,0 +1,147 @@
+{
+  "Metadata": {
+    "title": "Aegis — 私密搜索",
+    "description": "私密搜索引擎，使用本地 Meilisearch 索引和服务器端外部提供商防护。无日志、无 Cookie、不保存查询。"
+  },
+  "Logo": {
+    "home": "Aegis — 返回首页"
+  },
+  "LanguageSwitcher": {
+    "label": "语言",
+    "aria": "切换语言",
+    "current": "当前语言：{language}"
+  },
+  "Home": {
+    "zeroTraces": "零痕迹",
+    "eyebrow": "混合引擎 · 本地索引 + 多提供商",
+    "titleLead": "搜索网络。",
+    "titleAccent": "不留痕迹。",
+    "subtitle": "从本地索引开始，需要时再结合 Brave、Exa、Serper 和 Tavily。不保存查询，不使用 Cookie，不建立画像。",
+    "trust": {
+      "cookies": "无 Cookie",
+      "logs": "无日志",
+      "profiling": "无画像"
+    },
+    "features": {
+      "local": {
+        "title": "本地索引",
+        "description": "抓取的页面存放在 Meilisearch 中。只要索引足够，就能立即得到结果，无需依赖外部服务。"
+      },
+      "shield": {
+        "title": "多提供商防护",
+        "description": "当本地结果少于三条时，后端可以按顺序或并行组合 Brave、Exa、Serper 和 Tavily。密钥始终留在服务器上。"
+      },
+      "privacy": {
+        "title": "零追踪",
+        "description": "无 Cookie、无 IP 日志、不保存查询，也不缓存结果。"
+      }
+    }
+  },
+  "Search": {
+    "placeholder": "搜索网络…",
+    "submit": "搜索",
+    "ariaLabel": "搜索查询",
+    "suggestions": "搜索建议",
+    "resultsFor": "“{query}”的搜索结果",
+    "resultsHeading": "搜索结果",
+    "loading": "正在加载结果",
+    "loadingResults": "正在加载结果…",
+    "resultsCount": "{count, plural, =0 {没有结果} other {# 个结果}}",
+    "approxTotal": "共约 {total} 条",
+    "noResults": "没有找到“{query}”的结果",
+    "noResultsHint": "请尝试更宽泛的关键词，检查拼写，或通过新的抓取扩充本地索引。",
+    "emptyIndexTitle": "本地索引为空",
+    "emptyIndexHint": "抓取一个网站、导入 JSONL 后重新搜索。在 Docker 中文件位于 /data/katana.jsonl。",
+    "didYouMean": "你是不是要找：",
+    "sources": "来源",
+    "engine": "引擎",
+    "provider": "提供商",
+    "providerErrors": "无法连接：{providers}",
+    "insights": "API 回答",
+    "openSource": "打开来源",
+    "crawlScheduled": "后台抓取已启动：此页面将被索引到本地。后续搜索可能会得到更丰富的结果。",
+    "degraded": "其中一个来源无法访问：显示的结果可能不完整。",
+    "extraSnippets": "更多摘要（{count}）",
+    "opensInNewTab": "（在新标签页中打开）",
+    "updatedOn": "更新于 {date}",
+    "pagination": {
+      "aria": "结果分页",
+      "previous": "上一页",
+      "next": "下一页",
+      "page": "第 {page} 页",
+      "previousAria": "上一页",
+      "nextAria": "下一页"
+    },
+    "errors": {
+      "title": "无法完成搜索",
+      "retry": "重试",
+      "unreachable": "无法连接搜索引擎。请确认后端已启动后重试。",
+      "unavailable": "搜索来源暂时不可用。请稍后重试。",
+      "invalidQuery": "查询无效。请尝试其他关键词。",
+      "http": "搜索服务返回错误（{status}）。",
+      "invalidResponse": "搜索服务返回了无法读取的响应。",
+      "unexpected": "发生了意外错误。请稍后重试。"
+    },
+    "preview": {
+      "open": "打开 {title} 的预览",
+      "dialog": "{title} 的预览",
+      "close": "关闭预览",
+      "image": "{title} 的预览",
+      "imageUnavailableTitle": "图片无法访问",
+      "imageUnavailableDescription": "网站拒绝了请求，或返回了不支持的图片类型。请检查后端日志。",
+      "noImageTitle": "抓取中没有预览图",
+      "noImageDescription": "此页面未提供 og:image：需要重新抓取并重新索引。",
+      "openSite": "打开网站"
+    }
+  },
+  "Engine": {
+    "label": "搜索引擎",
+    "aria": "选择搜索引擎",
+    "auto": "自动",
+    "multi": "多引擎",
+    "local": "仅本地索引",
+    "brave": "Brave Search",
+    "exa": "Exa",
+    "serper": "Serper",
+    "tavily": "Tavily"
+  },
+  "Sources": {
+    "local": "本地索引",
+    "brave": "Brave Search",
+    "exa": "Exa",
+    "serper": "Serper",
+    "tavily": "Tavily"
+  },
+  "Filters": {
+    "label": "本地索引筛选",
+    "domain": "域名",
+    "domainPlaceholder": "example.com",
+    "language": "语言",
+    "anyLanguage": "所有语言",
+    "apply": "应用",
+    "clear": "清除",
+    "invalidDomain": "请输入有效域名，例如 example.com"
+  },
+  "Tor": {
+    "loading": "正在检查 Tor…",
+    "active": "Tor 已启用",
+    "direct": "Tor 直连",
+    "exit": "出口 {ip}",
+    "exitNode": "Tor 出口节点",
+    "disabled": "后端已禁用 Tor 诊断。",
+    "unreachable": "Tor 代理无响应，或不是 Tor 出口节点。"
+  },
+  "Footer": {
+    "privacy": "Aegis 不记录 IP、Cookie 或查询。外部链接打开时不发送来源信息。"
+  },
+  "Error": {
+    "title": "出了点问题",
+    "description": "页面无法加载。没有记录任何搜索数据。",
+    "retry": "重试"
+  },
+  "NotFound": {
+    "title": "页面未找到",
+    "description": "你查找的页面不存在或已被移动。",
+    "back": "返回搜索"
+  }
+}

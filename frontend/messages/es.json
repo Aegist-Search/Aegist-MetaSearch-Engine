@@ -1,0 +1,147 @@
+{
+  "Metadata": {
+    "title": "Aegis — búsqueda privada",
+    "description": "Buscador privado con índice local Meilisearch y escudo de proveedores externos del lado del servidor. Sin registros, sin cookies, sin consultas guardadas."
+  },
+  "Logo": {
+    "home": "Aegis — volver al inicio"
+  },
+  "LanguageSwitcher": {
+    "label": "Idioma",
+    "aria": "Cambiar idioma",
+    "current": "Idioma actual: {language}"
+  },
+  "Home": {
+    "zeroTraces": "Cero rastros",
+    "eyebrow": "Motor híbrido · índice local + multiproveedor",
+    "titleLead": "Busca en la web.",
+    "titleAccent": "No dejes rastro.",
+    "subtitle": "Empieza por tu índice y, cuando hace falta, combina Brave, Exa, Serper y Tavily. Sin consultas guardadas, sin cookies, sin perfil.",
+    "trust": {
+      "cookies": "Sin cookies",
+      "logs": "Sin registros",
+      "profiling": "Sin perfilado"
+    },
+    "features": {
+      "local": {
+        "title": "Índice local",
+        "description": "Las páginas de tu rastreo viven en Meilisearch. Respuestas inmediatas, sin dependencias externas mientras el índice sea suficiente."
+      },
+      "shield": {
+        "title": "Escudo multiproveedor",
+        "description": "Por debajo de tres resultados locales, el backend puede combinar Brave, Exa, Serper y Tavily, en cascada o en paralelo. Las claves se quedan en el servidor."
+      },
+      "privacy": {
+        "title": "Cero seguimiento",
+        "description": "Sin cookies, sin registros de IP, sin consultas guardadas y sin caché de resultados."
+      }
+    }
+  },
+  "Search": {
+    "placeholder": "Busca en la web...",
+    "submit": "Buscar",
+    "ariaLabel": "Consulta de búsqueda",
+    "suggestions": "Sugerencias",
+    "resultsFor": "Resultados para {query}",
+    "resultsHeading": "Resultados de búsqueda",
+    "loading": "Cargando resultados",
+    "loadingResults": "Cargando resultados…",
+    "resultsCount": "{count, plural, =0 {Sin resultados} one {# resultado} other {# resultados}}",
+    "approxTotal": "aproximadamente {total} en total",
+    "noResults": "No hay resultados para «{query}»",
+    "noResultsHint": "Prueba con palabras más generales, revisa la ortografía o amplía el índice local con un nuevo rastreo.",
+    "emptyIndexTitle": "Tu índice local está vacío",
+    "emptyIndexHint": "Rastrea un sitio, indexa el JSONL y vuelve a buscar. En Docker el archivo está en /data/katana.jsonl.",
+    "didYouMean": "¿Querías decir:",
+    "sources": "Fuentes",
+    "engine": "Motor",
+    "provider": "Proveedor",
+    "providerErrors": "No disponibles: {providers}",
+    "insights": "Respuestas de las API",
+    "openSource": "Abrir la fuente",
+    "crawlScheduled": "Rastreo en segundo plano iniciado: esta página se indexará localmente. Los resultados pueden mejorar en las próximas búsquedas.",
+    "degraded": "Una de las fuentes no estaba disponible: los resultados mostrados podrían ser parciales.",
+    "extraSnippets": "Más extractos ({count})",
+    "opensInNewTab": "(se abre en una pestaña nueva)",
+    "updatedOn": "Actualizado el {date}",
+    "pagination": {
+      "aria": "Paginación de resultados",
+      "previous": "Anterior",
+      "next": "Siguiente",
+      "page": "Página {page}",
+      "previousAria": "Página anterior",
+      "nextAria": "Página siguiente"
+    },
+    "errors": {
+      "title": "No se pudo completar la búsqueda",
+      "retry": "Reintentar",
+      "unreachable": "No se puede acceder al buscador. Comprueba que el backend esté activo e inténtalo de nuevo.",
+      "unavailable": "Las fuentes de búsqueda no están disponibles temporalmente. Inténtalo de nuevo en unos instantes.",
+      "invalidQuery": "La consulta no es válida. Prueba con otras palabras.",
+      "http": "El servicio de búsqueda devolvió un error ({status}).",
+      "invalidResponse": "El servicio de búsqueda devolvió una respuesta ilegible.",
+      "unexpected": "Se produjo un error inesperado. Inténtalo de nuevo en un momento."
+    },
+    "preview": {
+      "open": "Abrir la vista previa de {title}",
+      "dialog": "Vista previa de {title}",
+      "close": "Cerrar vista previa",
+      "image": "Vista previa de {title}",
+      "imageUnavailableTitle": "Imagen no disponible",
+      "imageUnavailableDescription": "El sitio rechazó la solicitud o devolvió un tipo de imagen no compatible. Revisa los registros del backend.",
+      "noImageTitle": "Sin vista previa en el rastreo",
+      "noImageDescription": "Esta página no expone og:image: se necesita un nuevo rastreo y una nueva indexación.",
+      "openSite": "Abrir el sitio"
+    }
+  },
+  "Engine": {
+    "label": "Motor de búsqueda",
+    "aria": "Elegir el motor de búsqueda",
+    "auto": "Automático",
+    "multi": "Multimotor",
+    "local": "Solo índice local",
+    "brave": "Brave Search",
+    "exa": "Exa",
+    "serper": "Serper",
+    "tavily": "Tavily"
+  },
+  "Sources": {
+    "local": "Índice local",
+    "brave": "Brave Search",
+    "exa": "Exa",
+    "serper": "Serper",
+    "tavily": "Tavily"
+  },
+  "Filters": {
+    "label": "Filtros del índice local",
+    "domain": "Dominio",
+    "domainPlaceholder": "ejemplo.es",
+    "language": "Idioma",
+    "anyLanguage": "Todos los idiomas",
+    "apply": "Aplicar",
+    "clear": "Quitar",
+    "invalidDomain": "Introduce un dominio válido, por ejemplo ejemplo.es"
+  },
+  "Tor": {
+    "loading": "Comprobando Tor…",
+    "active": "Tor Activo",
+    "direct": "Tor Directo",
+    "exit": "Salida {ip}",
+    "exitNode": "Nodo de salida Tor",
+    "disabled": "Diagnóstico de Tor desactivado en el backend.",
+    "unreachable": "El proxy Tor no responde o no es un nodo de salida Tor."
+  },
+  "Footer": {
+    "privacy": "Aegis no registra IP, cookies ni consultas. Los enlaces externos se abren sin referrer."
+  },
+  "Error": {
+    "title": "Algo salió mal",
+    "description": "La página no pudo cargarse. No se registró ningún dato de tu búsqueda.",
+    "retry": "Reintentar"
+  },
+  "NotFound": {
+    "title": "Página no encontrada",
+    "description": "La página que buscas no existe o se ha movido.",
+    "back": "Volver a la búsqueda"
+  }
+}

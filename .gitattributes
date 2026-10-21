@@ -1,0 +1,8 @@
+* text=auto eol=lf
+
+# cmd.exe mis-parses LF-only batch files with labels (goto), so .bat keeps CRLF.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Shell scripts must keep LF, even on a Windows checkout.
+*.sh text eol=lf

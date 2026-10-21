@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Node / Next.js
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Playwright
+frontend/test-results/
+frontend/playwright-report/
+frontend/blob-report/
+frontend/.playwright/
+
+# Environment
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Crawl data
+/data/*
+!/data/.gitkeep
+*.jsonl
+# The end-to-end fixture is a source file, not a crawl output.
+!frontend/e2e/fixtures/katana.jsonl
+
+# Logs and PID files written by scripts/start.sh and scripts/start.bat
+/logs/
+
+# Editors / OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

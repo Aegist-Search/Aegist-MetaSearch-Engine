@@ -1,0 +1,20 @@
+# Client-only Tor daemon: it relays nothing and only provides a SOCKS5 proxy.
+ClientOnly 1
+
+# Listen on the container interface. The port is not published by
+# docker-compose, so it is not reachable from the LAN.
+SocksPort 0.0.0.0:9050
+
+# Defense in depth: accept the private ranges used by Docker networks and
+# reject anything else. The backend reaches this container over the bridge.
+SocksPolicy accept 10.0.0.0/8
+SocksPolicy accept 172.16.0.0/12
+SocksPolicy accept 192.168.0.0/16
+SocksPolicy reject *
+
+# Keep state in the container filesystem; no host volume is needed.
+DataDirectory /var/lib/tor
+CacheDirectory /var/lib/tor
+
+# Notices only, with SafeLogging on by default. No request logging.
+Log notice stdout

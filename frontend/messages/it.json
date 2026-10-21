@@ -1,0 +1,147 @@
+{
+  "Metadata": {
+    "title": "Aegis — ricerca privata",
+    "description": "Motore di ricerca privato con indice locale Meilisearch e scudo di provider esterni server-side. Nessun log, nessun cookie, nessuna query salvata."
+  },
+  "Logo": {
+    "home": "Aegis — torna alla home"
+  },
+  "LanguageSwitcher": {
+    "label": "Lingua",
+    "aria": "Cambia lingua",
+    "current": "Lingua corrente: {language}"
+  },
+  "Home": {
+    "zeroTraces": "Zero tracce",
+    "eyebrow": "Motore ibrido · indice locale + multi-provider",
+    "titleLead": "Cerca il web.",
+    "titleAccent": "Lascia zero tracce.",
+    "subtitle": "Parte dal tuo indice e, quando serve, combina Brave, Exa, Serper e Tavily. Nessuna query salvata, nessun cookie, nessun profilo.",
+    "trust": {
+      "cookies": "Nessun cookie",
+      "logs": "Nessun log",
+      "profiling": "Nessuna profilazione"
+    },
+    "features": {
+      "local": {
+        "title": "Indice locale",
+        "description": "Le pagine del tuo crawl vivono in Meilisearch. Risposte immediate, senza dipendenze esterne finché bastano."
+      },
+      "shield": {
+        "title": "Scudo multi-provider",
+        "description": "Sotto i tre risultati locali il backend può combinare Brave, Exa, Serper e Tavily, in fallback o in parallelo. Le chiavi restano sul server."
+      },
+      "privacy": {
+        "title": "Nessuna traccia",
+        "description": "Zero cookie, zero log di IP, nessuna query salvata e nessuna cache dei risultati."
+      }
+    }
+  },
+  "Search": {
+    "placeholder": "Cerca nel web…",
+    "submit": "Cerca",
+    "ariaLabel": "Query di ricerca",
+    "suggestions": "Suggerimenti",
+    "resultsFor": "Risultati per {query}",
+    "resultsHeading": "Risultati della ricerca",
+    "loading": "Caricamento dei risultati",
+    "loadingResults": "Caricamento dei risultati…",
+    "resultsCount": "{count, plural, =0 {Nessun risultato} one {# risultato} other {# risultati}}",
+    "approxTotal": "circa {total} totali",
+    "noResults": "Nessun risultato per «{query}»",
+    "noResultsHint": "Prova con parole più generiche, controlla l'ortografia oppure arricchisci l'indice locale con un nuovo crawl.",
+    "emptyIndexTitle": "Il tuo indice locale è vuoto",
+    "emptyIndexHint": "Esegui un crawl, indicizza il JSONL e riprova. In Docker il file si trova in /data/katana.jsonl.",
+    "didYouMean": "Forse cercavi:",
+    "sources": "Fonti",
+    "engine": "Motore",
+    "provider": "Provider",
+    "providerErrors": "Non raggiungibili: {providers}",
+    "insights": "Risposte dalle API",
+    "openSource": "Apri la fonte",
+    "crawlScheduled": "Crawl in background avviato: questa pagina verrà indicizzata nell'indice locale. I risultati potrebbero arricchirsi nelle prossime ricerche.",
+    "degraded": "Una delle fonti non era raggiungibile: i risultati mostrati potrebbero essere parziali.",
+    "extraSnippets": "Altri estratti ({count})",
+    "opensInNewTab": "(si apre in una nuova scheda)",
+    "updatedOn": "Aggiornato il {date}",
+    "pagination": {
+      "aria": "Paginazione dei risultati",
+      "previous": "Precedente",
+      "next": "Successiva",
+      "page": "Pagina {page}",
+      "previousAria": "Pagina precedente",
+      "nextAria": "Pagina successiva"
+    },
+    "errors": {
+      "title": "Impossibile completare la ricerca",
+      "retry": "Riprova",
+      "unreachable": "Il motore di ricerca non è raggiungibile. Verifica che il backend sia avviato e riprova.",
+      "unavailable": "Le fonti di ricerca sono momentaneamente non disponibili. Riprova tra poco.",
+      "invalidQuery": "La query non è valida. Prova con parole diverse.",
+      "http": "Il servizio di ricerca ha risposto con un errore ({status}).",
+      "invalidResponse": "Il servizio di ricerca ha restituito una risposta non leggibile.",
+      "unexpected": "Si è verificato un errore inatteso. Riprova tra qualche istante."
+    },
+    "preview": {
+      "open": "Apri l'anteprima di {title}",
+      "dialog": "Anteprima di {title}",
+      "close": "Chiudi anteprima",
+      "image": "Anteprima di {title}",
+      "imageUnavailableTitle": "Immagine non raggiungibile",
+      "imageUnavailableDescription": "Il sito ha rifiutato la richiesta o non ha restituito un tipo di immagine supportato. Controlla i log del backend.",
+      "noImageTitle": "Nessuna anteprima nel crawl",
+      "noImageDescription": "Questa pagina non espone og:image: serve un nuovo crawl e una nuova ingestione dell'indice.",
+      "openSite": "Apri il sito"
+    }
+  },
+  "Engine": {
+    "label": "Motore di ricerca",
+    "aria": "Scegli il motore di ricerca",
+    "auto": "Automatico",
+    "multi": "Multi motore",
+    "local": "Solo indice locale",
+    "brave": "Brave Search",
+    "exa": "Exa",
+    "serper": "Serper",
+    "tavily": "Tavily"
+  },
+  "Sources": {
+    "local": "Indice locale",
+    "brave": "Brave Search",
+    "exa": "Exa",
+    "serper": "Serper",
+    "tavily": "Tavily"
+  },
+  "Filters": {
+    "label": "Filtri dell'indice locale",
+    "domain": "Dominio",
+    "domainPlaceholder": "esempio.it",
+    "language": "Lingua",
+    "anyLanguage": "Tutte le lingue",
+    "apply": "Applica",
+    "clear": "Rimuovi",
+    "invalidDomain": "Inserisci un dominio valido, ad esempio esempio.it"
+  },
+  "Tor": {
+    "loading": "Verifica Tor…",
+    "active": "Tor Attivo",
+    "direct": "Tor Diretto",
+    "exit": "Uscita {ip}",
+    "exitNode": "Nodo di uscita Tor",
+    "disabled": "Diagnostica Tor disabilitata sul backend.",
+    "unreachable": "Il proxy Tor non risponde o non è un nodo di uscita Tor."
+  },
+  "Footer": {
+    "privacy": "Aegis non registra IP, cookie o query. I link esterni si aprono senza referrer."
+  },
+  "Error": {
+    "title": "Qualcosa è andato storto",
+    "description": "La pagina non è riuscita a caricarsi. Nessun dato della tua ricerca è stato registrato.",
+    "retry": "Riprova"
+  },
+  "NotFound": {
+    "title": "Pagina non trovata",
+    "description": "La pagina che cerchi non esiste o è stata spostata.",
+    "back": "Torna alla ricerca"
+  }
+}

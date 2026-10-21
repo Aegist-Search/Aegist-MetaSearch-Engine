@@ -1,0 +1,292 @@
+@import "tailwindcss";
+
+:root {
+  --radius: 0.9rem;
+  --background: oklch(0.155 0.012 172);
+  --foreground: oklch(0.96 0.004 170);
+  --card: oklch(0.205 0.013 172);
+  --card-foreground: oklch(0.96 0.004 170);
+  --popover: oklch(0.205 0.013 172);
+  --popover-foreground: oklch(0.96 0.004 170);
+  --primary: oklch(0.81 0.115 166);
+  --primary-foreground: oklch(0.17 0.025 172);
+  --secondary: oklch(0.25 0.012 172);
+  --secondary-foreground: oklch(0.95 0.005 170);
+  --muted: oklch(0.235 0.01 172);
+  --muted-foreground: oklch(0.7 0.012 170);
+  --accent: oklch(0.27 0.018 172);
+  --accent-foreground: oklch(0.96 0.005 170);
+  --destructive: oklch(0.66 0.19 25);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.74 0.1 168);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 10px);
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    background-color: var(--background);
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    background-image:
+      radial-gradient(ellipse 90% 55% at 50% -12%, oklch(0.81 0.115 166 / 0.11), transparent 62%),
+      radial-gradient(ellipse 45% 35% at 92% -5%, oklch(0.65 0.1 205 / 0.07), transparent 70%),
+      linear-gradient(oklch(1 0 0 / 0.022) 1px, transparent 1px),
+      linear-gradient(90deg, oklch(1 0 0 / 0.022) 1px, transparent 1px);
+    background-size: auto, auto, 72px 72px, 72px 72px;
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    @apply bg-primary/25 text-foreground;
+  }
+}
+
+/* Subtle, theme-aware glow behind the home hero. */
+.hero-glow {
+  background:
+    radial-gradient(
+      ellipse 65% 55% at 50% 0%,
+      color-mix(in oklab, var(--primary) 17%, transparent),
+      transparent 72%
+    ),
+    radial-gradient(
+      ellipse 35% 30% at 78% 8%,
+      color-mix(in oklab, var(--ring) 12%, transparent),
+      transparent 70%
+    );
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: oklch(1 0 0 / 0.12);
+  border: 2px solid var(--background);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(1 0 0 / 0.2);
+}
+
+/* --- Markdown inside result snippets --------------------------------------
+   Compact typography derived from the shadcn tokens. The card keeps a
+   three-line clamp; extra snippets expand inside <details>. Raw HTML is not
+   rendered by react-markdown, so these rules only cover Markdown nodes. */
+.markdown-snippet {
+  overflow-wrap: anywhere;
+}
+
+.markdown-snippet > :first-child {
+  margin-top: 0;
+}
+
+.markdown-snippet > :last-child {
+  margin-bottom: 0;
+}
+
+.markdown-snippet p {
+  margin: 0.4rem 0 0;
+}
+
+.markdown-snippet p:first-child {
+  margin-top: 0;
+}
+
+.markdown-snippet strong {
+  color: var(--foreground);
+  font-weight: 600;
+}
+
+.markdown-snippet em {
+  font-style: italic;
+}
+
+.markdown-snippet del {
+  color: var(--muted-foreground);
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
+
+.markdown-snippet a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  text-decoration-color: color-mix(in oklab, var(--primary) 45%, transparent);
+  transition: color 150ms ease, text-decoration-color 150ms ease;
+}
+
+.markdown-snippet a:hover {
+  color: var(--foreground);
+  text-decoration-color: currentColor;
+}
+
+.markdown-snippet a:focus-visible {
+  border-radius: 2px;
+  outline: 2px solid color-mix(in oklab, var(--ring) 60%, transparent);
+  outline-offset: 2px;
+}
+
+.markdown-snippet code {
+  padding: 0.08em 0.34em;
+  border: 1px solid color-mix(in oklab, var(--primary) 16%, transparent);
+  border-radius: 0.35rem;
+  background: color-mix(in oklab, var(--primary) 9%, transparent);
+  color: var(--foreground);
+  font-family: var(--font-mono);
+  font-size: 0.84em;
+}
+
+.markdown-snippet pre {
+  margin: 0.5rem 0 0;
+  padding: 0.65rem 0.75rem;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 0.65rem;
+  background: oklch(0 0 0 / 0.25);
+  line-height: 1.55;
+}
+
+.markdown-snippet pre code {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-size: 0.8em;
+}
+
+.markdown-snippet ul,
+.markdown-snippet ol {
+  margin: 0.4rem 0 0;
+  padding-left: 1.15rem;
+}
+
+.markdown-snippet ul {
+  list-style: disc;
+}
+
+.markdown-snippet ol {
+  list-style: decimal;
+}
+
+.markdown-snippet li {
+  margin-top: 0.15rem;
+}
+
+.markdown-snippet li::marker {
+  color: color-mix(in oklab, var(--primary) 65%, transparent);
+}
+
+.markdown-snippet li > p {
+  margin-top: 0;
+}
+
+.markdown-snippet blockquote {
+  margin: 0.5rem 0 0;
+  padding-left: 0.75rem;
+  border-left: 2px solid color-mix(in oklab, var(--primary) 35%, transparent);
+  color: color-mix(in oklab, var(--muted-foreground) 88%, var(--foreground));
+  font-style: italic;
+}
+
+.markdown-snippet hr {
+  margin: 0.6rem 0;
+  border: 0;
+  border-top: 1px solid var(--border);
+}
+
+.markdown-snippet h1,
+.markdown-snippet h2,
+.markdown-snippet h3,
+.markdown-snippet h4,
+.markdown-snippet h5,
+.markdown-snippet h6 {
+  margin: 0.55rem 0 0;
+  color: var(--foreground);
+  font-size: 0.95em;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.markdown-table-wrap {
+  margin-top: 0.5rem;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.markdown-snippet table {
+  width: max-content;
+  min-width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8em;
+}
+
+.markdown-snippet th,
+.markdown-snippet td {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.markdown-snippet th {
+  background: color-mix(in oklab, var(--primary) 8%, transparent);
+  color: var(--foreground);
+  font-weight: 600;
+}
+
+/* Defense in depth: images are also dropped in the components map. */
+.markdown-snippet img {
+  display: none;
+}
+
+.markdown-snippet sup {
+  color: var(--primary);
+  font-size: 0.7em;
+}

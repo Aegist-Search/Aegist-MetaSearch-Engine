@@ -1,0 +1,1 @@
+"""Katana → Meilisearch ingestion pipeline."""

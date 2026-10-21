@@ -1,0 +1,147 @@
+{
+  "Metadata": {
+    "title": "Aegis — recherche privée",
+    "description": "Moteur de recherche privé avec un index local Meilisearch et un bouclier de fournisseurs externes côté serveur. Aucun journal, aucun cookie, aucune requête enregistrée."
+  },
+  "Logo": {
+    "home": "Aegis — retour à l'accueil"
+  },
+  "LanguageSwitcher": {
+    "label": "Langue",
+    "aria": "Changer de langue",
+    "current": "Langue actuelle : {language}"
+  },
+  "Home": {
+    "zeroTraces": "Zéro trace",
+    "eyebrow": "Moteur hybride · index local + multi-fournisseurs",
+    "titleLead": "Recherchez sur le web.",
+    "titleAccent": "Ne laissez aucune trace.",
+    "subtitle": "Partez de votre index et, si nécessaire, combinez Brave, Exa, Serper et Tavily. Aucune requête enregistrée, aucun cookie, aucun profil.",
+    "trust": {
+      "cookies": "Aucun cookie",
+      "logs": "Aucun journal",
+      "profiling": "Aucun profilage"
+    },
+    "features": {
+      "local": {
+        "title": "Index local",
+        "description": "Les pages de votre crawl vivent dans Meilisearch. Des réponses immédiates, sans dépendance externe tant que l'index suffit."
+      },
+      "shield": {
+        "title": "Bouclier multi-fournisseurs",
+        "description": "En dessous de trois résultats locaux, le backend peut combiner Brave, Exa, Serper et Tavily, en cascade ou en parallèle. Les clés restent sur le serveur."
+      },
+      "privacy": {
+        "title": "Zéro suivi",
+        "description": "Aucun cookie, aucun journal d'IP, aucune requête enregistrée et aucun cache de résultats."
+      }
+    }
+  },
+  "Search": {
+    "placeholder": "Rechercher sur le web…",
+    "submit": "Rechercher",
+    "ariaLabel": "Requête de recherche",
+    "suggestions": "Suggestions",
+    "resultsFor": "Résultats pour {query}",
+    "resultsHeading": "Résultats de recherche",
+    "loading": "Chargement des résultats",
+    "loadingResults": "Chargement des résultats…",
+    "resultsCount": "{count, plural, =0 {Aucun résultat} one {# résultat} other {# résultats}}",
+    "approxTotal": "environ {total} au total",
+    "noResults": "Aucun résultat pour « {query} »",
+    "noResultsHint": "Essayez des mots plus généraux, vérifiez l'orthographe ou enrichissez l'index local avec un nouveau crawl.",
+    "emptyIndexTitle": "Votre index local est vide",
+    "emptyIndexHint": "Lancez un crawl, ingérez le JSONL puis réessayez. Dans Docker le fichier se trouve dans /data/katana.jsonl.",
+    "didYouMean": "Vouliez-vous dire :",
+    "sources": "Sources",
+    "engine": "Moteur",
+    "provider": "Fournisseur",
+    "providerErrors": "Injoignables : {providers}",
+    "insights": "Réponses des API",
+    "openSource": "Ouvrir la source",
+    "crawlScheduled": "Crawl en arrière-plan lancé : cette page sera indexée localement. Les résultats pourront s'améliorer lors des prochaines recherches.",
+    "degraded": "Une des sources était inaccessible : les résultats affichés peuvent être partiels.",
+    "extraSnippets": "Autres extraits ({count})",
+    "opensInNewTab": "(s'ouvre dans un nouvel onglet)",
+    "updatedOn": "Mis à jour le {date}",
+    "pagination": {
+      "aria": "Pagination des résultats",
+      "previous": "Précédent",
+      "next": "Suivant",
+      "page": "Page {page}",
+      "previousAria": "Page précédente",
+      "nextAria": "Page suivante"
+    },
+    "errors": {
+      "title": "Impossible de terminer la recherche",
+      "retry": "Réessayer",
+      "unreachable": "Le moteur de recherche est inaccessible. Vérifiez que le backend est démarré et réessayez.",
+      "unavailable": "Les sources de recherche sont temporairement indisponibles. Réessayez dans un instant.",
+      "invalidQuery": "La requête n'est pas valide. Essayez d'autres mots.",
+      "http": "Le service de recherche a renvoyé une erreur ({status}).",
+      "invalidResponse": "Le service de recherche a renvoyé une réponse illisible.",
+      "unexpected": "Une erreur inattendue s'est produite. Réessayez dans un instant."
+    },
+    "preview": {
+      "open": "Ouvrir l'aperçu de {title}",
+      "dialog": "Aperçu de {title}",
+      "close": "Fermer l'aperçu",
+      "image": "Aperçu de {title}",
+      "imageUnavailableTitle": "Image inaccessible",
+      "imageUnavailableDescription": "Le site a refusé la requête ou renvoyé un type d'image non pris en charge. Consultez les journaux du backend.",
+      "noImageTitle": "Aucun aperçu dans le crawl",
+      "noImageDescription": "Cette page n'expose pas og:image : un nouveau crawl et une nouvelle indexation sont nécessaires.",
+      "openSite": "Ouvrir le site"
+    }
+  },
+  "Engine": {
+    "label": "Moteur de recherche",
+    "aria": "Choisir le moteur de recherche",
+    "auto": "Automatique",
+    "multi": "Multi-moteur",
+    "local": "Index local uniquement",
+    "brave": "Brave Search",
+    "exa": "Exa",
+    "serper": "Serper",
+    "tavily": "Tavily"
+  },
+  "Sources": {
+    "local": "Index local",
+    "brave": "Brave Search",
+    "exa": "Exa",
+    "serper": "Serper",
+    "tavily": "Tavily"
+  },
+  "Filters": {
+    "label": "Filtres de l'index local",
+    "domain": "Domaine",
+    "domainPlaceholder": "exemple.fr",
+    "language": "Langue",
+    "anyLanguage": "Toutes les langues",
+    "apply": "Appliquer",
+    "clear": "Effacer",
+    "invalidDomain": "Saisissez un domaine valide, par exemple exemple.fr"
+  },
+  "Tor": {
+    "loading": "Vérification de Tor…",
+    "active": "Tor Actif",
+    "direct": "Tor Direct",
+    "exit": "Sortie {ip}",
+    "exitNode": "Nœud de sortie Tor",
+    "disabled": "Diagnostic Tor désactivé sur le backend.",
+    "unreachable": "Le proxy Tor ne répond pas ou n'est pas un nœud de sortie Tor."
+  },
+  "Footer": {
+    "privacy": "Aegis n'enregistre ni IP, ni cookie, ni requête. Les liens externes s'ouvrent sans referrer."
+  },
+  "Error": {
+    "title": "Une erreur est survenue",
+    "description": "La page n'a pas pu se charger. Aucune donnée de recherche n'a été enregistrée.",
+    "retry": "Réessayer"
+  },
+  "NotFound": {
+    "title": "Page introuvable",
+    "description": "La page que vous cherchez n'existe pas ou a été déplacée.",
+    "back": "Retour à la recherche"
+  }
+}

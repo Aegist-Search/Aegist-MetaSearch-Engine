@@ -1,0 +1,147 @@
+{
+  "Metadata": {
+    "title": "Aegis — private search",
+    "description": "Private search engine with a local Meilisearch index and a server-side external provider shield. No logs, no cookies, no saved queries."
+  },
+  "Logo": {
+    "home": "Aegis — back to home"
+  },
+  "LanguageSwitcher": {
+    "label": "Language",
+    "aria": "Change language",
+    "current": "Current language: {language}"
+  },
+  "Home": {
+    "zeroTraces": "Zero traces",
+    "eyebrow": "Hybrid engine · local index + multi-provider",
+    "titleLead": "Search the web.",
+    "titleAccent": "Leave no trace.",
+    "subtitle": "Start from your local index and, when needed, combine Brave, Exa, Serper and Tavily. No saved queries, no cookies, no profile.",
+    "trust": {
+      "cookies": "No cookies",
+      "logs": "No logs",
+      "profiling": "No profiling"
+    },
+    "features": {
+      "local": {
+        "title": "Local Index",
+        "description": "The pages from your crawl live in Meilisearch. Instant answers, with no external dependency while the index is enough."
+      },
+      "shield": {
+        "title": "Multi-provider Shield",
+        "description": "Below three local results, the backend can combine Brave, Exa, Serper and Tavily, in fallback or in parallel. Keys stay on the server."
+      },
+      "privacy": {
+        "title": "Zero Tracking",
+        "description": "No cookies, no IP logs, no saved queries and no result cache."
+      }
+    }
+  },
+  "Search": {
+    "placeholder": "Search the web...",
+    "submit": "Search",
+    "ariaLabel": "Search query",
+    "suggestions": "Suggestions",
+    "resultsFor": "Results for {query}",
+    "resultsHeading": "Search results",
+    "loading": "Loading results",
+    "loadingResults": "Loading results…",
+    "resultsCount": "{count, plural, =0 {No results} one {# result} other {# results}}",
+    "approxTotal": "about {total} total",
+    "noResults": "No results for “{query}”",
+    "noResultsHint": "Try broader words, check the spelling, or enrich the local index with a new crawl.",
+    "emptyIndexTitle": "Your local index is empty",
+    "emptyIndexHint": "Crawl a site, ingest the JSONL and search again. Inside Docker the file is /data/katana.jsonl.",
+    "didYouMean": "Did you mean:",
+    "sources": "Sources",
+    "engine": "Engine",
+    "provider": "Provider",
+    "providerErrors": "Unreachable: {providers}",
+    "insights": "Answers from APIs",
+    "openSource": "Open source",
+    "crawlScheduled": "Background crawl started: this page will be indexed locally. Results may improve on the next searches.",
+    "degraded": "One of the sources was unreachable: the results shown may be partial.",
+    "extraSnippets": "More excerpts ({count})",
+    "opensInNewTab": "(opens in a new tab)",
+    "updatedOn": "Updated {date}",
+    "pagination": {
+      "aria": "Results pagination",
+      "previous": "Previous",
+      "next": "Next",
+      "page": "Page {page}",
+      "previousAria": "Previous page",
+      "nextAria": "Next page"
+    },
+    "errors": {
+      "title": "Could not complete the search",
+      "retry": "Retry",
+      "unreachable": "The search engine is unreachable. Check that the backend is running and try again.",
+      "unavailable": "The search sources are temporarily unavailable. Try again shortly.",
+      "invalidQuery": "The query is not valid. Try different words.",
+      "http": "The search service returned an error ({status}).",
+      "invalidResponse": "The search service returned an unreadable response.",
+      "unexpected": "An unexpected error occurred. Try again in a moment."
+    },
+    "preview": {
+      "open": "Open preview of {title}",
+      "dialog": "Preview of {title}",
+      "close": "Close preview",
+      "image": "Preview of {title}",
+      "imageUnavailableTitle": "Image not reachable",
+      "imageUnavailableDescription": "The site refused the request or returned an unsupported image type. Check the backend logs.",
+      "noImageTitle": "No preview in the crawl",
+      "noImageDescription": "This page does not expose og:image: a new crawl and index ingestion are required.",
+      "openSite": "Open site"
+    }
+  },
+  "Engine": {
+    "label": "Search engine",
+    "aria": "Choose search engine",
+    "auto": "Automatic",
+    "multi": "Multi engine",
+    "local": "Local index only",
+    "brave": "Brave Search",
+    "exa": "Exa",
+    "serper": "Serper",
+    "tavily": "Tavily"
+  },
+  "Sources": {
+    "local": "Local index",
+    "brave": "Brave Search",
+    "exa": "Exa",
+    "serper": "Serper",
+    "tavily": "Tavily"
+  },
+  "Filters": {
+    "label": "Local index filters",
+    "domain": "Domain",
+    "domainPlaceholder": "example.com",
+    "language": "Language",
+    "anyLanguage": "Any language",
+    "apply": "Apply",
+    "clear": "Clear",
+    "invalidDomain": "Enter a valid domain, like example.com"
+  },
+  "Tor": {
+    "loading": "Checking Tor…",
+    "active": "Tor Active",
+    "direct": "Tor Direct",
+    "exit": "Exit {ip}",
+    "exitNode": "Tor exit node",
+    "disabled": "Tor diagnostics disabled on the backend.",
+    "unreachable": "The Tor proxy is not responding or is not a Tor exit node."
+  },
+  "Footer": {
+    "privacy": "Aegis does not log IPs, cookies or queries. External links open without a referrer."
+  },
+  "Error": {
+    "title": "Something went wrong",
+    "description": "The page could not load. No search data was recorded.",
+    "retry": "Retry"
+  },
+  "NotFound": {
+    "title": "Page not found",
+    "description": "The page you are looking for does not exist or has been moved.",
+    "back": "Back to search"
+  }
+}
