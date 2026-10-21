@@ -1,7 +1,8 @@
 # Aegis Search 
 A private web search engine: your own **Meilisearch** index, filled by **Katana** crawls, backed by a server-side shield of external providers (Brave, Exa, Serper, Tavily) when the local index is not enough. No IP logs, no saved queries, no persisted results and no tracking cookies.
 
-[![Hits](https://hits.sh/github.com/Aegist-Search/Aegist-MetaSearch-Engine.svg?style=flat-square&label=views&labelColor=266410&logo=accenture)](https://hits.sh/github.com/Aegist-Search/Aegist-MetaSearch-Engine/)
+[![Hits](https://hits.sh/github.com/Aegist-Search/Aegist-MetaSearch-Engine.svg?style=flat-square&label=views&labelColor=266410&logo=accenture)](https://hits.sh/github.com/Aegist-Search/Aegist-MetaSearch-Engine/)  ![GitHub Repo stars](https://img.shields.io/github/stars/Aegist-Search/Aegist-MetaSearch-Engine)
+
 
 # A Preview 
 
