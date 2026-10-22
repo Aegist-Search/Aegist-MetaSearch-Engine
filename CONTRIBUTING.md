@@ -38,7 +38,7 @@ Before contributing, make sure you have:
 1. Fork the repository
 2. Clone your fork:
    ```bash
-   git clone https://github.com/<your-username>/Aegist-MetaSearch-Engine.git
+   git clone https://github.com/Aegist-Search/Aegist-MetaSearch-Engine.git
    cd Aegist-MetaSearch-Engine
    ```
 3. Create a feature branch:
